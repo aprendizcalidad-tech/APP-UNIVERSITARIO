@@ -41,3 +41,384 @@ header{background:#ffffffd9;backdrop-filter:blur(15px);height:82px;border-bottom
 .brand-finnova .brand-logo{display:block;width:100%;max-width:186px;height:auto;object-fit:contain}
 .brand-finnova .brand-campus{padding-left:2px;color:#dce6f2;font-size:.68rem;font-weight:650;letter-spacing:1.8px;text-transform:uppercase}
 @media(max-width:1150px){.brand-finnova .brand-logo-wrap{padding:9px}.brand-finnova .brand-campus{font-size:.62rem;letter-spacing:1.35px}}
+
+
+/* =========================================================
+   FINNOVA GROUP — IDENTIDAD CORPORATIVA V4
+   Azul corporativo + naranja Finnova. Mantiene la lógica del campus.
+   ========================================================= */
+:root{--navy:#070a70;--ink:#141b45;--muted:#667085;--line:#e3e6ef;--bg:#f5f6fa;--gold:#f49119;--blue:#152795;--green:#18856f;--radius:18px}
+body.finnova-theme{background:linear-gradient(180deg,#f8f9fc 0,#f4f5fa 100%);color:var(--ink)}
+body.finnova-theme #sidebar{background:linear-gradient(180deg,#070a70 0%,#0b126e 55%,#11194e 100%);border-right:1px solid #ffffff12;box-shadow:18px 0 50px #0b12520d}
+.brand.brand-finnova{display:flex;flex-direction:column;align-items:stretch;gap:9px;margin:0 0 36px;line-height:1;text-decoration:none}
+.brand-finnova .brand-logo-wrap{display:flex;align-items:center;justify-content:center;width:100%;min-height:82px;padding:12px 10px;background:#fff;border-radius:16px;box-shadow:0 12px 30px #02062d4d;border:2px solid #f4911930}
+.brand-finnova .brand-logo{display:block;width:100%;max-width:205px;height:auto;object-fit:contain}
+.brand-finnova .brand-campus{padding:3px 4px 0;color:#fff;font-size:.7rem;font-weight:800;letter-spacing:2.3px;text-transform:uppercase}
+body.finnova-theme .nav-label{color:#b8c0ec;font-size:.64rem;letter-spacing:2.2px;font-weight:700}
+body.finnova-theme nav a{border-radius:11px;color:#e9ebff;border:1px solid transparent;transition:.18s ease}
+body.finnova-theme nav a:hover{background:#ffffff10;border-color:#ffffff12}
+body.finnova-theme nav a.active{background:linear-gradient(90deg,#f4911929,#ffffff0b);color:#fff;border-color:#f491194d;box-shadow:inset 4px 0 #f49119}
+body.finnova-theme nav a.active .nav-icon{color:#f7a833}
+body.finnova-theme .aside-bottom{border-top:1px solid #ffffff18;padding-top:24px}
+body.finnova-theme .aside-bottom .small{color:#b9c1ec;letter-spacing:1.6px}
+body.finnova-theme .aside-bottom p{color:#fff;font-size:1.22rem}
+body.finnova-theme .aside-bottom strong{color:#f6a42c}
+body.finnova-theme .demo-label{background:#ffffff0c;border:1px solid #f4911954;color:#f7d4a5}
+body.finnova-theme header{background:#fff;border-bottom:1px solid #e7e9f1;box-shadow:0 4px 16px #0b125208;position:relative}
+body.finnova-theme header:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#070a70 0 72%,#f49119 72% 100%)}
+body.finnova-theme .breadcrumb-brand{color:#070a70;font-weight:800}
+body.finnova-theme .avatar{background:#eef0ff;color:#070a70;border:1px solid #d9ddff}
+body.finnova-theme .eyebrow{color:#152795;font-weight:800}
+body.finnova-theme .intro h1{color:#0a0f5e}
+body.finnova-theme .btn{background:#070a70;border-radius:10px;box-shadow:0 8px 18px #070a7017}
+body.finnova-theme .btn:hover{background:#131a87}
+body.finnova-theme .btn.gold{background:#f49119;color:#10165d;box-shadow:0 10px 24px #f4911930}
+body.finnova-theme .btn.gold:hover{background:#ffa629}
+body.finnova-theme .btn.secondary{background:#fff;border:1px solid #dfe3ef;color:#151c57;box-shadow:none}
+body.finnova-theme .btn.link{background:none;color:#14249a;box-shadow:none}
+body.finnova-theme .hero{background:linear-gradient(128deg,#070a70 0%,#121a85 58%,#202c9b 100%);border:1px solid #ffffff12;border-radius:22px;box-shadow:0 24px 55px #070a7022;isolation:isolate}
+body.finnova-theme .hero:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;right:-105px;top:-165px;background:radial-gradient(circle,#f491196b 0,#f491191c 46%,transparent 70%);z-index:-1}
+body.finnova-theme .hero:after{content:"";position:absolute;width:180px;height:180px;border:26px solid #ffffff08;border-radius:50%;right:160px;bottom:-120px;z-index:-1}
+body.finnova-theme .hero .eyebrow{color:#ffb14b}
+body.finnova-theme .hero p{color:#d9ddff}
+body.finnova-theme .hero-summary{border-left:1px solid #ffffff28}
+body.finnova-theme .hero-summary span{color:#dce0ff}
+.hero-logo-card{display:flex!important;align-items:center;justify-content:center;background:#fff;border-radius:12px;padding:9px 10px;margin:0 0 4px;width:170px;box-shadow:0 10px 28px #03062d35}
+.hero-logo-card img{display:block;width:100%;height:auto}
+body.finnova-theme .stat,body.finnova-theme .panel,body.finnova-theme .course,body.finnova-theme .school,body.finnova-theme .lesson-nav,body.finnova-theme .table-wrap{border-color:#e4e7f0;box-shadow:0 8px 28px #0d144c09}
+body.finnova-theme .stat{border-top:3px solid #eef0fb}
+body.finnova-theme .stat:nth-child(2){border-top-color:#f49119}
+body.finnova-theme .stat-icon{background:#eef0ff;color:#111a8c}
+body.finnova-theme .school{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+body.finnova-theme .school:hover{transform:translateY(-4px);border-color:#f4911970;box-shadow:0 13px 30px #0b125215}
+body.finnova-theme .school-symbol{background:linear-gradient(145deg,#eef0ff,#fff4e7);color:#101a8b}
+body.finnova-theme .course{border-radius:18px}
+body.finnova-theme .course-cover{background:linear-gradient(135deg,#eef0ff 0%,#f7f8ff 70%,#fff2e2 100%);border-bottom:1px solid #e0e4f2;color:#101a8b;position:relative;overflow:hidden}
+body.finnova-theme .course-cover:after{content:"";position:absolute;width:72px;height:72px;border-radius:50%;right:-24px;bottom:-28px;background:#f4911925}
+body.finnova-theme .tag{background:#eef0ff;color:#121d8c}
+body.finnova-theme .tag.gold{background:#fff0dc;color:#a45600}
+body.finnova-theme .progress span{background:linear-gradient(90deg,#101a87,#f49119)}
+body.finnova-theme input:focus,body.finnova-theme select:focus,body.finnova-theme textarea:focus{border-color:#17279b;box-shadow:0 0 0 3px #17279b17;outline:none}
+body.finnova-theme footer{background:#fff;border-top-color:#e6e8ef}
+body.finnova-theme footer span{font-weight:800;color:#070a70}
+body.finnova-theme #toast{background:#070a70;border:1px solid #f4911955}
+body.finnova-theme dialog{border-top:4px solid #f49119}
+body.finnova-theme .cert{border-top-color:#f49119}
+body.finnova-theme .cert .cert-icon{color:#f49119}
+@media(max-width:1150px){.brand-finnova .brand-logo-wrap{min-height:72px;padding:10px}.brand-finnova .brand-campus{font-size:.62rem;letter-spacing:1.7px}.hero-logo-card{width:135px}}
+@media(max-width:760px){body.finnova-theme #sidebar{background:linear-gradient(180deg,#070a70,#11194e)}.brand-finnova .brand-logo-wrap{min-height:78px}.hero-logo-card{display:none!important}}
+
+/* =========================================================
+   FINNOVA GROUP · VISUAL SYSTEM V5
+   Azul institucional + naranja de innovación.
+   ========================================================= */
+body.finnova-theme{
+ --f-blue:#08177b;
+ --f-blue-2:#12299d;
+ --f-blue-3:#07124e;
+ --f-orange:#f39a1e;
+ --f-orange-2:#ffb13b;
+ --f-ice:#f5f7fc;
+ --f-white:#ffffff;
+ --f-text:#16204b;
+ --f-muted:#737b96;
+ --f-line:#e5e8f1;
+ --navy:var(--f-blue);
+ --ink:var(--f-text);
+ --muted:var(--f-muted);
+ --gold:var(--f-orange);
+ --blue:var(--f-blue-2);
+ --bg:var(--f-ice);
+ background:
+   radial-gradient(circle at 85% 8%,rgba(243,154,30,.10),transparent 23rem),
+   linear-gradient(180deg,#f8f9fd 0%,#f3f5fb 100%);
+ color:var(--f-text);
+}
+body.finnova-theme #sidebar{
+ width:272px;
+ padding:24px 18px 20px;
+ background:#fff;
+ color:var(--f-text);
+ border-right:1px solid var(--f-line);
+ box-shadow:18px 0 45px rgba(8,23,123,.055);
+ overflow:hidden;
+}
+body.finnova-theme #sidebar:before{
+ content:"";
+ position:absolute;
+ inset:0 0 auto 0;
+ height:5px;
+ background:linear-gradient(90deg,var(--f-orange) 0 28%,var(--f-blue) 28% 100%);
+}
+body.finnova-theme #sidebar:after{
+ content:"";
+ position:absolute;
+ width:190px;height:190px;
+ border:1px solid rgba(8,23,123,.06);
+ border-radius:50%;
+ right:-124px;top:90px;
+ box-shadow:0 0 0 26px rgba(8,23,123,.025),0 0 0 58px rgba(243,154,30,.025);
+ pointer-events:none;
+}
+body.finnova-theme .shell{margin-left:272px}
+body.finnova-theme .brand-finnova{
+ position:relative;z-index:1;
+ display:block;
+ margin:8px 4px 34px;
+ padding:0;
+ text-align:left;
+}
+body.finnova-theme .brand-finnova .brand-logo-wrap{
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ min-height:0;
+ padding:0;
+ background:transparent;
+ border:0;
+ box-shadow:none;
+ overflow:visible;
+}
+body.finnova-theme .brand-finnova .brand-logo{
+ width:205px;
+ max-width:100%;
+ height:auto;
+ object-fit:contain;
+ display:block;
+ filter:none;
+}
+body.finnova-theme .brand-finnova .brand-campus{
+ display:block;
+ margin:9px 0 0 47px;
+ color:#77809a;
+ font-size:.60rem;
+ font-weight:800;
+ letter-spacing:2.25px;
+ text-transform:uppercase;
+}
+body.finnova-theme .nav-label{
+ margin:0 13px 11px;
+ color:#a1a7b8;
+ font-size:.61rem;
+ font-weight:900;
+ letter-spacing:2.2px;
+}
+body.finnova-theme nav{gap:4px;position:relative;z-index:1}
+body.finnova-theme nav a{
+ position:relative;
+ min-height:47px;
+ padding:11px 12px;
+ border:1px solid transparent;
+ border-radius:12px;
+ color:#3f496b;
+ font-size:.87rem;
+ font-weight:650;
+ transition:background .18s,border-color .18s,color .18s,transform .18s;
+}
+body.finnova-theme nav a:hover{
+ background:#f5f7ff;
+ border-color:#e9ebf6;
+ color:var(--f-blue);
+ transform:translateX(2px);
+}
+body.finnova-theme nav a.active{
+ background:linear-gradient(90deg,#eef1ff 0%,#fff8ee 100%);
+ border-color:#dfe4fb;
+ color:var(--f-blue);
+ box-shadow:none;
+}
+body.finnova-theme nav a.active:before{
+ content:"";
+ position:absolute;left:-1px;top:9px;bottom:9px;width:4px;border-radius:0 8px 8px 0;
+ background:var(--f-orange);
+}
+body.finnova-theme .nav-icon{
+ width:28px;height:28px;
+ display:grid;place-items:center;
+ border-radius:9px;
+ background:#f2f4fa;
+ color:#5e6683;
+ font-size:.88rem;
+ font-weight:800;
+}
+body.finnova-theme nav a.active .nav-icon{background:var(--f-blue);color:#fff}
+body.finnova-theme .aside-bottom{
+ position:relative;z-index:1;
+ margin-top:auto;
+ padding:18px 16px 17px;
+ background:linear-gradient(145deg,var(--f-blue-3),var(--f-blue));
+ border:0;
+ border-radius:18px;
+ overflow:hidden;
+ box-shadow:0 14px 34px rgba(8,23,123,.18);
+}
+body.finnova-theme .aside-bottom:after{
+ content:"";position:absolute;width:92px;height:92px;border-radius:50%;right:-46px;bottom:-45px;
+ border:14px solid rgba(243,154,30,.28);
+}
+body.finnova-theme .aside-bottom .small{color:#ffc368;font-size:.58rem;font-weight:800;letter-spacing:1.7px}
+body.finnova-theme .aside-bottom p{position:relative;z-index:1;color:#fff;font-size:.94rem;line-height:1.5;margin:10px 0 14px;font-weight:650}
+body.finnova-theme .aside-bottom strong{color:#fff}
+body.finnova-theme .demo-label{position:relative;z-index:1;background:#ffffff10;border:1px solid #ffffff20;color:#d9ddff;font-size:.58rem;letter-spacing:1px}
+body.finnova-theme header{
+ height:76px;
+ padding:0 34px;
+ background:linear-gradient(100deg,var(--f-blue-3) 0%,var(--f-blue) 72%,#182da5 100%);
+ border:0;
+ box-shadow:0 10px 30px rgba(8,23,123,.12);
+ position:sticky;top:0;z-index:8;
+}
+body.finnova-theme header:before{display:none}
+body.finnova-theme .breadcrumb{display:flex;align-items:center;gap:10px;color:#d9defe;font-size:.78rem}
+body.finnova-theme .breadcrumb-brand{color:#fff;font-weight:900;letter-spacing:1.4px}
+body.finnova-theme .breadcrumb-dot{color:var(--f-orange);font-size:1.2rem;margin:0!important}
+body.finnova-theme .breadcrumb b{color:#d9defe;font-weight:550}
+body.finnova-theme header #account{color:#fff}
+body.finnova-theme header .account-name{color:#fff;font-weight:650}
+body.finnova-theme header .avatar{background:var(--f-orange);color:#111a68;border:0;font-weight:900}
+body.finnova-theme header .btn.secondary{background:#ffffff10;border-color:#ffffff2e;color:#fff}
+body.finnova-theme header .btn.secondary:hover{background:#fff;color:var(--f-blue)}
+body.finnova-theme main{padding:34px 38px 46px;max-width:1510px}
+body.finnova-theme .intro{margin-bottom:24px}
+body.finnova-theme .intro h1{font-size:2.12rem;letter-spacing:-1.3px;color:var(--f-blue-3);font-weight:850;margin-bottom:7px}
+body.finnova-theme .intro .eyebrow{color:var(--f-orange);font-size:.68rem;font-weight:900;letter-spacing:2.1px}
+body.finnova-theme .intro p{font-size:.91rem;color:#7a8198;margin-top:6px}
+body.finnova-theme .finnova-hero{
+ position:relative;
+ min-height:326px;
+ display:grid;
+ grid-template-columns:minmax(0,1.25fr) minmax(330px,.75fr);
+ border-radius:26px;
+ overflow:hidden;
+ background:linear-gradient(128deg,#07124e 0%,#08177b 50%,#1630aa 100%);
+ box-shadow:0 24px 55px rgba(8,23,123,.20);
+ isolation:isolate;
+}
+body.finnova-theme .finnova-hero:before{
+ content:"";position:absolute;inset:auto auto -130px -80px;width:360px;height:360px;border-radius:50%;
+ background:radial-gradient(circle,rgba(243,154,30,.24) 0,rgba(243,154,30,.07) 38%,transparent 70%);z-index:-1;
+}
+body.finnova-theme .finnova-hero-copy{padding:43px 48px 42px;align-self:center}
+body.finnova-theme .finnova-kicker{display:flex;align-items:center;gap:10px;color:#ffbf63;font-size:.67rem;font-weight:900;letter-spacing:2.1px}
+body.finnova-theme .finnova-kicker span{width:26px;height:3px;border-radius:4px;background:var(--f-orange)}
+body.finnova-theme .finnova-hero h2{max-width:700px;margin:13px 0 15px;color:#fff;font-size:clamp(2rem,3vw,3rem);line-height:1.06;letter-spacing:-1.7px;font-weight:830}
+body.finnova-theme .finnova-hero-copy>p{max-width:650px;color:#d8ddff;font-size:.96rem;line-height:1.65;margin-bottom:25px}
+body.finnova-theme .hero-actions{display:flex;gap:11px;flex-wrap:wrap}
+body.finnova-theme .btn.primary-brand{background:var(--f-orange);color:#0b155e;box-shadow:0 12px 27px rgba(243,154,30,.24);font-weight:800}
+body.finnova-theme .btn.primary-brand:hover{background:#ffad33;transform:translateY(-1px)}
+body.finnova-theme .btn.ghost-brand{background:#ffffff0c;color:#fff;border:1px solid #ffffff24;box-shadow:none}
+body.finnova-theme .btn.ghost-brand:hover{background:#ffffff18}
+body.finnova-theme .finnova-hero-visual{
+ position:relative;
+ min-height:326px;
+ padding:38px 38px 30px 24px;
+ display:flex;flex-direction:column;justify-content:center;align-items:flex-end;
+ overflow:hidden;
+ background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.08));
+ border-left:1px solid #ffffff12;
+}
+body.finnova-theme .orbit{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.15)}
+body.finnova-theme .orbit-a{width:255px;height:255px;right:-72px;top:-54px}
+body.finnova-theme .orbit-b{width:185px;height:185px;right:-37px;top:-20px;border-color:rgba(243,154,30,.32)}
+body.finnova-theme .orbit-c{width:115px;height:115px;right:-2px;top:15px}
+body.finnova-theme .spark{position:absolute;background:var(--f-orange);transform:rotate(45deg)}
+body.finnova-theme .spark-a{width:12px;height:12px;right:120px;top:52px}
+body.finnova-theme .spark-b{width:7px;height:7px;right:86px;top:102px;background:#fff}
+body.finnova-theme .hero-brand-word{position:relative;z-index:1;color:#fff;font-weight:900;font-size:3.25rem;letter-spacing:-2.5px;line-height:.95;text-shadow:0 6px 25px rgba(0,0,0,.12)}
+body.finnova-theme .hero-brand-word span{color:var(--f-orange)}
+body.finnova-theme .finnova-hero-visual>p{position:relative;z-index:1;color:#bfc7fb;font-size:.58rem;font-weight:800;letter-spacing:1.4px;margin:11px 0 27px;text-align:right}
+body.finnova-theme .hero-metrics{position:relative;z-index:1;display:flex;gap:8px}
+body.finnova-theme .hero-metrics>div{min-width:96px;padding:12px 14px;border:1px solid #ffffff18;background:#ffffff0d;border-radius:14px;backdrop-filter:blur(4px)}
+body.finnova-theme .hero-metrics strong{display:block;color:#fff;font-size:1.45rem;line-height:1;font-weight:800}
+body.finnova-theme .hero-metrics span{display:block;color:#cfd4fb;font-size:.66rem;margin-top:6px}
+body.finnova-theme .finnova-stats{gap:13px;margin:18px 0 35px}
+body.finnova-theme .finnova-stats .stat{position:relative;min-height:101px;padding:19px 19px 17px;background:#fff;border:1px solid var(--f-line);border-radius:16px;box-shadow:0 9px 25px rgba(8,23,123,.05);overflow:hidden}
+body.finnova-theme .finnova-stats .stat:after{content:"";position:absolute;right:-18px;bottom:-18px;width:54px;height:54px;border-radius:50%;background:#f5f7ff}
+body.finnova-theme .finnova-stats .stat:nth-child(2):before,body.finnova-theme .finnova-stats .stat:nth-child(4):before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:var(--f-orange)}
+body.finnova-theme .stat small{color:#7b839b;font-weight:650}
+body.finnova-theme .stat b{color:var(--f-blue-3);font-size:1.72rem;font-weight:850}
+body.finnova-theme .finnova-stats .stat-icon{position:relative;z-index:1;background:#eef1ff;color:var(--f-blue);font-size:.63rem;font-weight:900;letter-spacing:1px}
+body.finnova-theme .finnova-section-head{margin:31px 0 15px}
+body.finnova-theme .finnova-section-head>div{display:flex;align-items:center;gap:11px}
+body.finnova-theme .finnova-section-head h2{font-size:1.18rem;color:var(--f-blue-3);font-weight:820}
+body.finnova-theme .section-index{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:var(--f-blue);color:#fff;font-size:.62rem;font-weight:900}
+body.finnova-theme .btn.link{background:none;color:var(--f-blue);font-weight:780;box-shadow:none;padding-inline:0}
+body.finnova-theme .btn.link:hover{color:var(--f-orange)}
+body.finnova-theme .finnova-schools{gap:12px}
+body.finnova-theme .finnova-schools .school{position:relative;min-height:135px;padding:19px 14px 16px;text-align:left;background:#fff;border:1px solid var(--f-line);border-radius:17px;box-shadow:0 9px 25px rgba(8,23,123,.045);overflow:hidden}
+body.finnova-theme .finnova-schools .school:after{content:"";position:absolute;right:-25px;top:-25px;width:74px;height:74px;border-radius:50%;background:#f6f7fd}
+body.finnova-theme .finnova-schools .school:hover{transform:translateY(-4px);border-color:#cbd2f5;box-shadow:0 16px 32px rgba(8,23,123,.10)}
+body.finnova-theme .school-no{position:absolute;right:13px;top:12px;z-index:1;color:#c6cada;font-size:.66rem;font-weight:900;letter-spacing:1px}
+body.finnova-theme .finnova-schools .school-symbol{margin:0 0 13px;width:36px;height:36px;border-radius:11px;background:var(--f-blue);color:#fff;font-size:1rem;box-shadow:0 8px 18px rgba(8,23,123,.15)}
+body.finnova-theme .finnova-schools .school:nth-child(even) .school-symbol{background:var(--f-orange);color:#111a65}
+body.finnova-theme .finnova-schools .school strong{font-size:.83rem;color:var(--f-blue-3);margin:0 0 5px}
+body.finnova-theme .finnova-schools .school small{font-size:.68rem;color:#8b91a7}
+body.finnova-theme .course{border:1px solid var(--f-line);border-radius:18px;box-shadow:0 10px 28px rgba(8,23,123,.05);transition:transform .18s,box-shadow .18s}
+body.finnova-theme .course:hover{transform:translateY(-3px);box-shadow:0 16px 35px rgba(8,23,123,.09)}
+body.finnova-theme .course-cover{min-height:116px;background:linear-gradient(120deg,#07124e,#0c208d 72%,#1831aa);color:#fff;border:0;position:relative}
+body.finnova-theme .course-cover:before{content:"";position:absolute;width:98px;height:98px;border:18px solid rgba(243,154,30,.22);border-radius:50%;right:-43px;top:-38px}
+body.finnova-theme .course-cover:after{content:"";position:absolute;right:26px;bottom:0;width:3px;height:42px;background:var(--f-orange);transform:skewX(-24deg)}
+body.finnova-theme .course-cover .tag{position:relative;z-index:1;background:#ffffff14;color:#fff;border:1px solid #ffffff20}
+body.finnova-theme .course-cover .small{position:relative;z-index:1;color:#bfc8ff}
+body.finnova-theme .cover-number{position:relative;z-index:1;color:#fff;opacity:.16}
+body.finnova-theme .course-body h3{color:var(--f-blue-3);font-weight:800}
+body.finnova-theme .course-meta{color:#7d849c}
+body.finnova-theme .progress{height:6px;background:#edf0f7}
+body.finnova-theme .progress span{background:linear-gradient(90deg,var(--f-blue),var(--f-orange))}
+body.finnova-theme .course-bottom .btn{background:var(--f-blue);box-shadow:none}
+body.finnova-theme .course-bottom .btn:hover{background:var(--f-blue-2)}
+body.finnova-theme .panel,body.finnova-theme .lesson-nav,body.finnova-theme .table-wrap,body.finnova-theme .empty{border-color:var(--f-line);box-shadow:0 8px 26px rgba(8,23,123,.04)}
+body.finnova-theme .panel{border-radius:18px}
+body.finnova-theme .btn{border-radius:10px;background:var(--f-blue);box-shadow:none}
+body.finnova-theme .btn:hover{background:var(--f-blue-2)}
+body.finnova-theme .btn.gold{background:var(--f-orange);color:#111a65}
+body.finnova-theme .btn.secondary{background:#fff;color:var(--f-blue);border:1px solid #dfe3f0}
+body.finnova-theme input,body.finnova-theme select,body.finnova-theme textarea{border-color:#dce1ee;border-radius:10px}
+body.finnova-theme input:focus,body.finnova-theme select:focus,body.finnova-theme textarea:focus{outline:none;border-color:#9da9e5;box-shadow:0 0 0 3px rgba(8,23,123,.08)}
+body.finnova-theme footer{margin-top:0;background:#fff;border-top:1px solid var(--f-line)}
+body.finnova-theme footer span{color:var(--f-blue);font-weight:900;letter-spacing:.3px}
+body.finnova-theme #toast{background:var(--f-blue-3);border:1px solid #ffffff1f}
+body.finnova-theme dialog{border-top:4px solid var(--f-orange)}
+
+@media(max-width:1220px){
+ body.finnova-theme #sidebar{width:246px}
+ body.finnova-theme .shell{margin-left:246px}
+ body.finnova-theme .brand-finnova .brand-logo{width:185px}
+ body.finnova-theme .brand-finnova .brand-campus{margin-left:42px}
+ body.finnova-theme .schools{grid-template-columns:repeat(3,1fr)}
+ body.finnova-theme .finnova-hero{grid-template-columns:1fr 305px}
+ body.finnova-theme .finnova-hero-copy{padding:38px 38px}
+}
+@media(max-width:980px){
+ body.finnova-theme #sidebar{transform:translateX(-100%);width:272px;transition:transform .2s ease;z-index:20}
+ body.finnova-theme.menu-open #sidebar{transform:translateX(0)}
+ body.finnova-theme .shell{margin-left:0}
+ body.finnova-theme #menu{display:block;color:#fff}
+ body.finnova-theme header{padding:0 22px}
+ body.finnova-theme main{padding:28px 24px 40px}
+ body.finnova-theme .finnova-hero{grid-template-columns:1fr}
+ body.finnova-theme .finnova-hero-visual{min-height:210px;border-left:0;border-top:1px solid #ffffff12;align-items:flex-start;padding:31px 40px}
+ body.finnova-theme .finnova-hero-visual>p{text-align:left}
+ body.finnova-theme .hero-metrics{align-self:flex-start}
+ body.finnova-theme .stats{grid-template-columns:repeat(2,1fr)}
+ body.finnova-theme .schools{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+ body.finnova-theme header{height:68px;padding:0 14px}
+ body.finnova-theme .breadcrumb-brand{display:none}
+ body.finnova-theme .breadcrumb-dot{display:none}
+ body.finnova-theme .account-name{display:none}
+ body.finnova-theme main{padding:23px 15px 34px}
+ body.finnova-theme .intro h1{font-size:1.72rem}
+ body.finnova-theme .finnova-hero{border-radius:20px}
+ body.finnova-theme .finnova-hero-copy{padding:30px 24px}
+ body.finnova-theme .finnova-hero h2{font-size:2rem}
+ body.finnova-theme .finnova-hero-visual{min-height:190px;padding:27px 24px}
+ body.finnova-theme .hero-brand-word{font-size:2.5rem}
+ body.finnova-theme .finnova-stats{grid-template-columns:1fr 1fr}
+ body.finnova-theme .finnova-stats .stat{min-height:92px;padding:15px}
+ body.finnova-theme .schools{grid-template-columns:1fr 1fr}
+ body.finnova-theme .grid{grid-template-columns:1fr}
+ body.finnova-theme .finnova-section-head{align-items:flex-end}
+ body.finnova-theme .finnova-section-head .btn.link{font-size:.76rem}
+}
