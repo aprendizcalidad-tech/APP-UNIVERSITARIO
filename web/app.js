@@ -66,6 +66,85 @@ function editRoute(id){const r=admin.routes.find(x=>x.id===id)||{id:'',title:'',
 function downloadBlob(blob,name){const link=document.createElement('a'),url=URL.createObjectURL(blob);link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
 function exportReport(){const rows=reportRows();const cols=[['name','Nombre'],['document','Documento'],['email','Correo'],['company','Empresa'],['area','Área'],['position','Cargo'],['city','Ciudad'],['course','Curso'],['date','Fecha'],['score','Nota'],['status','Estado'],['attempts','Intentos']];const cell=v=>'"'+String(v??'').replace(/^[\s]*[=+@\-\t\r]/,"'$&").replace(/"/g,'""')+'"';const csv=[cols.map(c=>cell(c[1])).join(';'),...rows.map(r=>cols.map(c=>cell(r[c[0]])).join(';'))].join('\r\n');downloadBlob(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),'Seguimiento_Universidad_'+new Date().toISOString().slice(0,10)+'.csv');}
 function certificateMarkup(c,demo=false){const warning=c.revoked?'CERTIFICADO REVOCADO':demo?'DEMOSTRACIÓN · SIN VALIDEZ INSTITUCIONAL':'';return `<div class="diploma-wrap"><article class="diploma" aria-label="Vista previa del certificado"><img class="diploma-logo" src="assets/finnova-group.png" alt="Finnova Group">${UC_CERTIFICATE.layout(c).map(b=>`<div class="diploma-text" style="left:${b.x/7.2}%;top:${b.y/4.05}%;width:${b.w/7.2}%;height:${b.h/4.05}%;font-size:${b.size/7.2}cqw;font-family:${b.font},${b.font==='Georgia'?'serif':'sans-serif'};color:${b.color};font-weight:${b.bold?700:400}">${b.link?`<a href="${safeUrl(b.link)}" target="_blank" rel="noopener">${esc(b.text)}</a>`:esc(b.text)}</div>`).join('')}<img class="diploma-signature-logo" src="assets/finnova-group.png" alt="Firma institucional Finnova Group">${warning?`<div class="diploma-warning">${warning}</div>`:''}</article></div>`;}
+function previewCertificate(id){const c=me.certificates.find(x=>x.id===id);if(!c)return;openDialog(certificateMarkup(c,UC_CONFIG.demo)+`<div class="dialog-actions">${!c.revoked?btn(UC_CONFIG.demo?'Imprimir ejemplo':'Descargar PDF',UC_CONFIG.demo?'print':'download',`data-id="${esc(c.id)}"`):''}<p class="small muted">${UC_CONFIG.demo?'Ejemplo sin validez institucional.':'El PDF conserva los datos registrados al aprobar.'}</p></div>`);$('#dialog').classList.add('certificate-dialog');$('#dialog-content h2').textContent='Tu certificado';}
+async function downloadCert(id){const c=me.certificates.find(x=>x.id===id);if(UC_CONFIG.demo){$('#main').innerHTML=`<div class="no-print row" style="margin-bottom:25px"><a class="btn secondary" href="#certificados">← Mis certificados</a>${btn('Imprimir / guardar PDF','print')}</div>`+certificateMarkup(c,true);return;}const d=await api('downloadCertificate',{id});const binary=atob(d.base64),bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));downloadBlob(new Blob([bytes],{type:'application/pdf'}),d.filename);}
+document.addEventListener('click',async event=>{const b=event.target.closest('[data-action]');if(!b)return;const action=b.dataset.action;if(b.type!=='submit')event.preventDefault();if(b.disabled)return;b.disabled=true;try{
+ switch(action){
+ case 'preview-resource':{const l=catalog.courses.find(c=>c.id===b.dataset.course)?.lessons.find(l=>l.id===b.dataset.lesson);if(l){openDialog(resourceViewer(l.url,l.title));$('#dialog').classList.add('resource-dialog');$('#dialog-content h2').textContent=l.title;}break;}
+ case 'login':login();break;case 'close':$('#dialog').close();break;
+ case 'demo-login':await authenticated(await api('demoLogin',{role:b.dataset.role}));break;
+ case 'logout':await api('logout');token='';me=null;sessionStorage.removeItem('uc_token');location.hash='inicio';await render();break;
+ case 'school':filterSchool=b.dataset.school;location.hash='oferta';if($('#school-filter')){$('#school-filter').value=filterSchool;filterCourses();}break;
+ case 'enroll':if(!me){login();break;}if(!me.user.name||!me.user.consentAt){location.hash='perfil';toast('Completa tu perfil antes de inscribirte.');break;}upsert(me.enrollments,await api('enroll',{courseId:b.dataset.id}));await render();toast('¡Ya estás inscrito!');break;
+ case 'lesson':lessonIndex=+b.dataset.index;await render();break;
+ case 'previous':lessonIndex--;await render();break;case 'mycourses':location.hash='mis-cursos';break;
+ case 'complete':{const currentHash=location.hash,index=lessonIndex,e=me.enrollments.find(x=>x.courseId===b.dataset.course);if(!e?.completed.includes(b.dataset.lesson))upsert(me.enrollments,await api('completeLesson',{courseId:b.dataset.course,lessonId:b.dataset.lesson}));if(location.hash===currentHash&&lessonIndex===index){lessonIndex++;await render();}break;}
+ case 'preview-certificate':previewCertificate(b.dataset.id);break;
+ case 'download':await downloadCert(b.dataset.id);break;case 'print':window.print();break;
+ case 'admin-tab':adminTab=b.dataset.tab;$('#main').innerHTML=adminPage();renderReport();break;
+ case 'new-course':editCourse();break;case 'edit-course':editCourse(b.dataset.id);break;case 'duplicate-course':editCourse(b.dataset.id,true);break;
+ case 'cancel-editor':editing=null;$('#main').innerHTML=adminPage();renderReport();break;
+ case 'add-lesson':collectEditor();editing.lessons.push({id:crypto.randomUUID(),title:'',body:'',url:'',type:'Lectura'});renderEditor();break;
+ case 'remove-lesson':if(editing.lessons.length===1)throw Error('El curso necesita al menos una lección.');collectEditor();editing.lessons.splice(+b.dataset.index,1);renderEditor();break;
+ case 'add-question':collectEditor();editing.quiz.push({id:crypto.randomUUID(),text:'',options:['','','',''],correct:0});renderEditor();break;
+ case 'remove-question':if(editing.quiz.length===1)throw Error('La evaluación necesita al menos una pregunta.');collectEditor();editing.quiz.splice(+b.dataset.index,1);renderEditor();break;
+ case 'new-route':editRoute();break;case 'edit-route':editRoute(b.dataset.id);break;
+ case 'toggle-user':if(!confirm(b.dataset.active==='true'?'¿Activar este usuario?':'¿Desactivar el acceso de este usuario?'))break;await api('setUserActive',{id:b.dataset.id,active:b.dataset.active==='true'});await render();break;
+ case 'revoke':if(!confirm('¿Revocar este certificado? Su verificación pública mostrará que no es válido.'))break;await api('revokeCertificate',{id:b.dataset.id});await render();break;
+ case 'retry-mail':await api('retryMail',{id:b.dataset.id});toast('Reintento programado.');await render();break;
+ case 'export':exportReport();break;
+ case 'reset-demo':if(confirm('¿Borrar los datos locales de demostración?'))UC_DEMO.reset();break;
+ case 'reload':await boot();break;
+ }
+ }catch(e){toast(e.message);}finally{b.disabled=false;}});
+document.addEventListener('submit',async event=>{const f=event.target;if(!(f instanceof HTMLFormElement))return;event.preventDefault();const submit=f.querySelector('button[type="submit"],button:not([type])');if(submit?.disabled)return;if(submit)submit.disabled=true;const err=f.querySelector('.error');if(err)err.textContent='';const d=new FormData(f);try{
+ if(f.id==='login-form'){const email=d.get('email'),result=await api('requestCode',{email});$('#dialog-content').innerHTML=`<div class="dialog-head"><h2>Revisa tu correo</h2>${btn('✕','close','aria-label="Cerrar"','secondary small')}</div><p>${esc(result.message)}</p><form id="code-form" data-email="${esc(email)}" data-challenge="${esc(result.challenge)}">${field('otp','Código de ocho dígitos','','text','required pattern="[0-9]{8}" inputmode="numeric" maxlength="8" autocomplete="one-time-code"')}<p class="error" role="alert"></p><button class="btn">Ingresar</button></form><div class="dialog-actions">${btn('Usar otro correo / solicitar nuevo código','login','','link')}</div>`;$('#otp').focus();}
+ else if(f.id==='code-form'){await authenticated(await api('verifyCode',{email:f.dataset.email,challenge:f.dataset.challenge,code:d.get('otp')}));}
+ else if(f.id==='profile-form'){me.user=await api('saveProfile',{...Object.fromEntries(d),consent:d.has('consent')});chrome();toast('Perfil actualizado.');location.hash='mis-cursos';}
+ else if(f.id==='quiz-form'){const c=catalog.courses.find(x=>x.id===f.dataset.course);const result=await api('submitQuiz',{courseId:c.id,answers:c.quiz.map((_,i)=>+d.get('q'+i)),requestId:f.dataset.request});await refreshProfile();if(result.passed){await render();toast('¡Aprobaste! Tu certificado está registrado.');}else{$('#main').innerHTML=heading('EVALUACIÓN',esc(c.title))+`<div class="panel" style="text-align:center"><h2>Un intento más para seguir aprendiendo.</h2><div class="score" style="color:#ad7b21">${result.score}%</div><p>Necesitas ${c.passScore}% para aprobar. Tu intento quedó registrado. Repasa las lecciones antes de volver a presentar.</p>${btn('Repasar el curso','lesson','data-index="0"')}</div>`;}}
+ else if(f.id==='verify-form'){const box=$('#verification-result');box.innerHTML='<div class="panel">Verificando…</div>';try{const c=await api('verifyCertificate',{code:String(d.get('code')).trim().toUpperCase()});box.innerHTML=`<div class="panel" style="max-width:720px">${tag(c.revoked?'CERTIFICADO REVOCADO':UC_CONFIG.demo?'DEMOSTRACIÓN SIN VALIDEZ':'CERTIFICADO VÁLIDO',c.revoked?'red':UC_CONFIG.demo?'gold':'green')}<h2 style="margin-top:22px">${esc(c.title)}</h2><p><strong>${esc(c.name)}</strong></p><p class="muted">${esc(c.company)} · ${c.hours} horas · ${date(c.date)}</p><code>${esc(c.code)}</code></div>`;}catch(e){box.innerHTML=`<div class="notice" role="alert">${esc(e.message)}</div>`;}}
+ else if(f.id==='course-form'){await api('saveCourse',collectEditor());editing=null;catalog=await api('catalog');await render();toast('Curso guardado.');}
+ else if(f.id==='route-form'){const courseIds=d.getAll('courseIds');if(!courseIds.length)throw Error('Selecciona al menos un curso.');await api('saveRoute',{id:f.dataset.id,title:d.get('title'),description:d.get('description'),courseIds,published:d.has('published')});catalog=await api('catalog');await render();toast('Ruta guardada.');}
+ else if(f.id==='settings-form'){catalog.settings=await api('saveSettings',{...Object.fromEntries(d),maxAttempts:+d.get('maxAttempts')});await render();toast('Configuración guardada.');}
+ else if(f.id==='invite-form'){await api('invite',{emails:d.get('emails')});await render();toast('Correos autorizados.');}
+ }catch(e){if(err&&err.isConnected)err.textContent=e.message;else toast(e.message);}finally{if(submit)submit.disabled=false;}});
+document.addEventListener('input',e=>{if(e.target.id==='course-search')filterCourses();if(e.target.id==='library-search'){let n=0;$$('.resource').forEach(x=>{x.hidden=!x.dataset.search.includes(e.target.value.toLowerCase());if(!x.hidden)n++;});$('#library-empty').hidden=!!n;}});
+document.addEventListener('change',e=>{if(e.target.id==='school-filter')filterCourses();if(e.target.classList.contains('report-filter'))renderReport();});
+$('#menu').addEventListener('click',()=>{document.body.classList.toggle('menu-open');$('#menu').setAttribute('aria-expanded',document.body.classList.contains('menu-open'));});
+document.addEventListener('click',e=>{if(document.body.classList.contains('menu-open')&&!e.target.closest('#sidebar,#menu')){document.body.classList.remove('menu-open');$('#menu').setAttribute('aria-expanded','false');}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.body.classList.remove('menu-open');$('#menu').setAttribute('aria-expanded','false');}});
+window.addEventListener('hashchange',()=>render().then(renderReport));
+async function boot(){try{await refresh();await render();renderReport();}catch(e){$('#main').innerHTML=empty('No pudimos conectar con el campus.',esc(e.message),btn('Reintentar','reload'));}}
+boot();
+
+
+$('#dialog').addEventListener('close',()=>{$('#dialog-content').replaceChildren();$('#dialog').classList.remove('resource-dialog','certificate-dialog');});
+
+// Convert supported links to in-campus viewers; never embed arbitrary HTML.
+function resourceSource(value){
+ let u;try{u=new URL(value);}catch{return null;}
+ if(u.protocol!=='https:'||u.username||u.password)return null;
+ const host=u.hostname.toLowerCase(),parts=u.pathname.split('/').filter(Boolean);
+ if(['youtube.com','www.youtube.com','m.youtube.com','youtu.be','www.youtube-nocookie.com'].includes(host)){
+  const id=host==='youtu.be'?parts[0]:['embed','shorts','live'].includes(parts[0])?parts[1]:u.searchParams.get('v');
+  if(!/^[A-Za-z0-9_-]{11}$/.test(id||''))return null;
+  return {kind:'frame',video:true,url:'https://www.youtube-nocookie.com/embed/'+id};
+ }
+ if(host==='drive.google.com'){
+  const match=u.pathname.match(/\/file\/d\/([\w-]+)/),id=match?.[1]||u.searchParams.get('id');
+  if(!/^[\w-]+$/.test(id||''))return null;
+  const preview=new URL('https://drive.google.com/file/d/'+id+'/preview');
+  if(u.searchParams.has('resourcekey'))preview.searchParams.set('resourcekey',u.searchParams.get('resourcekey'));
+  return {kind:'frame',url:preview.href};
+ }
+ if(host==='docs.google.com'){
+  const m=u.pathname.match(/^\/(document|spreadsheets|presentation)\/d\/(?:e\/)?([\w-]+)(\/.*)?$/);
+  if(m){const published=u.pathname.includes('/d/e/');return {kind:'frame',url:u.origin+'/'+m[1]+'/d/'+(published?'e/':'')+m[2]+'/'+(published?(m[1]==='spreadsheets'?'pubhtml':m[1]==='presentation'?'embed':'pub'):'preview')};}
+ }
+ const ext=u.pathname.split('.').pop().toLowerCase();
+ const kind=['mp4','webm','ogv'].includes(ext)?'video':['mp3','wav','ogg','m4a'].includes(ext)?'audio':['png','jpg','jpeg','gif','webp','avif'].includes(ext)?'image':ext==='pdf'?'frame':null;
+ return kind?{kind,url:u.href}:null;
+}
 function resourceViewer(url,title){
  const source=resourceSource(url),label=esc(title||'Material del curso');
  let content='';
