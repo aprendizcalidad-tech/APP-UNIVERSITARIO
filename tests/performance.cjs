@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
+const source=fs.readFileSync(__dirname+'/../google-apps-script/Code.gs','utf8');
+let opens=0,reads=0,locked=0;const data=[['id','data_json'],['a','{"id":"a","value":1}'],['',''],['b','{"id":"b","value":2}']];
+const sheet={getLastRow:()=>data.length,getRange:(row,col,count,width)=>({getValues:()=>{reads++;return data.slice(row-1,row-1+count).map(r=>r.slice(col-1,col-1+width));},setValues:values=>values.forEach((v,i)=>{data[row-1+i]=v;})})};
+const ctx=vm.createContext({PropertiesService:{getScriptProperties:()=>({getProperty:k=>k==='SPREADSHEET_ID'?'db':''})},SpreadsheetApp:{openById:()=>{opens++;return{getSheetByName:()=>sheet};}},LockService:{getScriptLock:()=>({tryLock:()=>{locked++;return true},hasLock:()=>false})},ContentService:{MimeType:{JSON:'json'},createTextOutput:x=>({setMimeType:()=>JSON.parse(x)})}});
+vm.runInContext(source,ctx);
+vm.runInContext("rows_('Users');get_('Users','a');rows_('Users');put_('Users',{id:'b',value:3});put_('Users',{id:'c',value:4});",ctx);
+assert.equal(opens,1);assert.equal(reads,1);assert.equal(JSON.parse(data[3][1]).value,3);assert.equal(data[4][0],'c');
+vm.runInContext("resetRequest_();rows_('Users');",ctx);assert.equal(reads,2);
+vm.runInContext("dispatch_=r=>r.action;",ctx);
+for(const action of ['catalog','me','adminData','verifyCertificate'])ctx.doPost({postData:{contents:JSON.stringify({action})}});
+assert.equal(locked,0);ctx.doPost({postData:{contents:'{"action":"completeLesson"}'}});assert.equal(locked,1);
+console.log('PASS: single table read per request, update with blank rows, insert, cache reset and read-only lock exemption.');

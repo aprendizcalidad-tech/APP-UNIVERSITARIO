@@ -1,5 +1,5 @@
 /* Finnova Group · shared 720 × 405 certificate composition. */
-const UC_CERTIFICATE_VERSION='finnova-3';
+const UC_CERTIFICATE_VERSION='finnova-6';
 const UC_CERTIFICATE={
  layout(c){
   const fit=(value,max,width,lines=1,height=999)=>{const text=String(value||'');let size=max;while(size>7){const capacity=width/(size*.57);let count=1,used=0;for(const word of text.split(/\s+/)){if(word.length>capacity){count+=Math.ceil(word.length/capacity)-1;used=word.length%capacity;}else if(used+word.length+1>capacity){count++;used=word.length;}else used+=word.length+1;}if(count<=lines&&count*size*1.18<=height-6)break;size-=.5;}return size;};
