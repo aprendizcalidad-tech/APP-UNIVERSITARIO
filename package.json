@@ -1,0 +1,12 @@
+{
+  "name": "campus-finnova",
+  "private": true,
+  "version": "7.0.0",
+  "scripts": {
+    "test": "node tests/assignments.cjs && node tests/certificate-backend.cjs",
+    "test:browser": "node tests/assignments-browser.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

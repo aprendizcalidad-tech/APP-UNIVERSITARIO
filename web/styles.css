@@ -429,3 +429,5 @@ body.finnova-theme dialog{border-top:4px solid var(--f-orange)}
 .course-cover.has-cover>.cover-image{z-index:0}.course-cover.has-cover:before{z-index:1}.course-cover.has-cover>div,.course-cover.has-cover>.cover-number{position:relative;z-index:2}.course-cover.has-cover .tag{background:#271e2ddb;color:#fff;border-color:#ffffff70}.school strong{overflow-wrap:anywhere}
 
 .finnova-theme .school-with-image{padding:0 0 18px}.finnova-theme .image-editor{background:#f7f8ff}.finnova-theme .school-with-image .school-symbol{margin:8px auto}.finnova-theme .school-with-image small{display:block}
+
+.assignment-list{max-height:440px;overflow:auto;margin:18px 0}.assignment-user{display:flex;align-items:center;gap:14px;padding:14px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.assignment-user[hidden]{display:none}.assignment-user input{flex:0 0 auto;width:20px;height:20px}
